@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Algorithms
 {
-    class QuickUnion : IUnionFind
+    public class QuickUnion : IUnionFind
     {
         private readonly List<int> compounds;
 
@@ -12,49 +12,26 @@ namespace Algorithms
             compounds = Enumerable.Range(0, n).ToList();
         }
 
+        private int GetRoot(int i)
+        {
+            while (i != compounds[i])
+            {
+                i = compounds[i];
+            }
+
+            return i;
+        }
 
         public void Union(int p, int q)
         {
-            var pRoot = GetRoot(p);
-            var qRoot = GetRoot(q);
-
-
-            if (pRoot.Depth > qRoot.Depth)
-            {
-                compounds[qRoot.Root] = compounds[pRoot.Root];
-            }
-            else
-            {
-                compounds[pRoot.Root] = compounds[qRoot.Root];
-            }
-
-        }
-
-        private RootInfo GetRoot(int i)
-        {
-            RootInfo result = new RootInfo { Depth = 1 };
-
-            while (compounds[i] != i)
-            {
-                i = compounds[i];
-                result.Depth++;
-            }
-
-            result.Root = i;
-            return result;
+            var rootP = GetRoot(p);
+            var rootQ = GetRoot(q);
+            compounds[rootP] = rootQ;
         }
 
         public bool IsConnected(int p, int q)
         {
-            return GetRoot(p).Root == GetRoot(q).Root;
+            return GetRoot(p) == GetRoot(q);
         }
-
-        class RootInfo
-        {
-            public int Root { get; set; }
-            public int Depth { get; set; }
-        }
-
     }
-
 }

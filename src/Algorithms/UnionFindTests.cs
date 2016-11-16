@@ -41,4 +41,12 @@ namespace Algorithms
             return new QuickUnion(size);
         }
     }
+
+    public class WeightedQuickUnionTests : UnionFindTests
+    {
+        protected override IUnionFind CreateUnionFindAlgorithm(int size)
+        {
+            return new WeightedQuickUnion(size);
+        }
+    }
 }

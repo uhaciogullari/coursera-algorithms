@@ -5,25 +5,25 @@ namespace Algorithms
 {
     public class QuickFind : IUnionFind
     {
-        private readonly List<int> _compounds;
+        private readonly List<int> compounds;
 
         public QuickFind(int n)
         {
-            _compounds = Enumerable.Range(0, n).ToList();
+            compounds = Enumerable.Range(0, n).ToList();
         }
 
         public void Union(int p, int q)
         {
-            var compoundIdToChange = _compounds[p];
-            var newCompoundId = _compounds[q];
+            var compoundIdToChange = compounds[p];
+            var newCompoundId = compounds[q];
 
             if (compoundIdToChange != newCompoundId)
             {
-                for (int i = 0; i < _compounds.Count; i++)
+                for (int i = 0; i < compounds.Count; i++)
                 {
-                    if (_compounds[i] == compoundIdToChange)
+                    if (compounds[i] == compoundIdToChange)
                     {
-                        _compounds[i] = newCompoundId;
+                        compounds[i] = newCompoundId;
                     }
                 }
             }
@@ -31,7 +31,7 @@ namespace Algorithms
 
         public bool IsConnected(int p, int q)
         {
-            return _compounds[p] == _compounds[q];
+            return compounds[p] == compounds[q];
         }
     }
 }

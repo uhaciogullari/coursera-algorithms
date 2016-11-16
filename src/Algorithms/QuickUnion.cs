@@ -5,11 +5,11 @@ namespace Algorithms
 {
     class QuickUnion : IUnionFind
     {
-        private readonly List<int> _compounds;
+        private readonly List<int> compounds;
 
         public QuickUnion(int n)
         {
-            _compounds = Enumerable.Range(0, n).ToList();
+            compounds = Enumerable.Range(0, n).ToList();
         }
 
 
@@ -21,11 +21,11 @@ namespace Algorithms
 
             if (pRoot.Depth > qRoot.Depth)
             {
-                _compounds[qRoot.Root] = _compounds[pRoot.Root];
+                compounds[qRoot.Root] = compounds[pRoot.Root];
             }
             else
             {
-                _compounds[pRoot.Root] = _compounds[qRoot.Root];
+                compounds[pRoot.Root] = compounds[qRoot.Root];
             }
 
         }
@@ -34,9 +34,9 @@ namespace Algorithms
         {
             RootInfo result = new RootInfo { Depth = 1 };
 
-            while (_compounds[i] != i)
+            while (compounds[i] != i)
             {
-                i = _compounds[i];
+                i = compounds[i];
                 result.Depth++;
             }
 

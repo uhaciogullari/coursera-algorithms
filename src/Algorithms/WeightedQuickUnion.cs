@@ -3,14 +3,14 @@ using System.Linq;
 
 namespace Algorithms
 {
-    class WeightedQuickUnion : IUnionFind
+    public class WeightedQuickUnion : IUnionFind
     {
-        private readonly List<int> compounds;
+        protected readonly List<int> Compounds;
         private readonly List<int> sizes;
 
         public WeightedQuickUnion(int n)
         {
-            compounds = Enumerable.Range(0, n).ToList();
+            Compounds = Enumerable.Range(0, n).ToList();
             sizes = Enumerable.Repeat(1,n).ToList();
         }
 
@@ -27,21 +27,21 @@ namespace Algorithms
 
             if (sizes[pRoot] < sizes[qRoot])
             {
-                compounds[pRoot] = qRoot;
+                Compounds[pRoot] = qRoot;
                 sizes[qRoot] += sizes[pRoot];
             }
             else
             {
-                compounds[qRoot] = pRoot;
+                Compounds[qRoot] = pRoot;
                 sizes[pRoot] = qRoot;
             }
         }
 
-        private int GetRoot(int i)
+        protected virtual int GetRoot(int i)
         {
-            while (i != compounds[i])
+            while (i != Compounds[i])
             {
-                i = compounds[i];
+                i = Compounds[i];
             }
 
             return i;

@@ -49,4 +49,12 @@ namespace Algorithms
             return new WeightedQuickUnion(size);
         }
     }
+
+    public class WeightedQuickUnionWithPathCompressionTests : UnionFindTests
+    {
+        protected override IUnionFind CreateUnionFindAlgorithm(int size)
+        {
+            return new WeightedQuickUnionWithPathCompression(size);
+        }
+    }
 }

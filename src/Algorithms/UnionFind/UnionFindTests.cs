@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace Algorithms
+namespace Algorithms.UnionFind
 {
     public abstract class UnionFindTests
     {

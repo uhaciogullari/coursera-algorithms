@@ -1,4 +1,4 @@
-﻿namespace Algorithms
+﻿namespace Algorithms.UnionFind
 {
     public interface IUnionFind
     {

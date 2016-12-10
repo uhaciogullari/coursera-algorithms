@@ -1,10 +1,10 @@
 ﻿namespace Algorithms.Stacks
 {
-    public interface IStack
+    public interface IStack<T>
     {
-        void Push(string item);
+        void Push(T item);
 
-        string Pop();
+        T Pop();
 
         bool IsEmpty { get; }
     }

@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using FluentAssertions;
 using Xunit;
 
@@ -6,31 +8,50 @@ namespace Algorithms.Stacks
 {
     public abstract class StackTests
     {
-        protected abstract IStack CreateStack();
+        protected abstract IStack<string> CreateStack();
 
         [Fact]
-        public void FactMethodName()
+        public void StackTest()
         {
             var stack = CreateStack();
-            StringBuilder stringBuilder = new StringBuilder();
-            
+            List<string> output = new List<string>();
+
+            Action act = () => stack.Pop();
+            act.ShouldThrow<InvalidOperationException>();
+
             stack.Push("to");
             stack.Push("be");
             stack.Push("or");
             stack.Push("not");
             stack.Push("to");
-            stringBuilder.Append($"{stack.Pop()} ");
+            output.Add(stack.Pop());
             stack.Push("be");
-            stringBuilder.Append($"{stack.Pop()} ");
-            stringBuilder.Append($"{stack.Pop()} ");
+            output.Add(stack.Pop());
+            output.Add(stack.Pop());
             stack.Push("that");
-            stringBuilder.Append($"{stack.Pop()} ");
-            stringBuilder.Append($"{stack.Pop()} ");
-            stringBuilder.Append($"{stack.Pop()} ");
+            output.Add(stack.Pop());
+            output.Add(stack.Pop());
+            output.Add(stack.Pop());
             stack.Push("is");
 
-
-            stringBuilder.ToString().TrimEnd().Should().Be("to be not that or be");
+            output.Should().BeEquivalentTo("to", "be", "not", "that", "or", "be");
         }
     }
+
+    public class ResizingArrayStackTests : StackTests
+    {
+        protected override IStack<string> CreateStack()
+        {
+            return new ResizingArrayStack<string>();
+        }
+    }
+
+    public class LinkedListStackTests : StackTests
+    {
+        protected override IStack<string> CreateStack()
+        {
+            return new LinkedListStack<string>();
+        }
+    }
+
 }

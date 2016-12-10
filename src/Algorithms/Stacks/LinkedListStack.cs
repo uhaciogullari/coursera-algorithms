@@ -2,24 +2,24 @@
 
 namespace Algorithms.Stacks
 {
-    public class LinkedListStack : IStack
+    public class LinkedListStack<T> : IStack<T>
     {
-        private Node first = null;
+        private Node<T> first;
 
-        public void Push(string item)
+        public void Push(T item)
         {
             if (first == null)
             {
-                first = new Node(item, null);
+                first = new Node<T>(item, null);
             }
             else
             {
-                var node = new Node(item, first);
+                var node = new Node<T>(item, first);
                 first = node;
             }
         }
 
-        public string Pop()
+        public T Pop()
         {
             if (IsEmpty)
             {
@@ -33,16 +33,16 @@ namespace Algorithms.Stacks
 
         public bool IsEmpty => first == null;
 
-        private class Node
+        private class Node<TItem>
         {
-            public Node(string value, Node next)
+            public Node(TItem value, Node<TItem> next)
             {
                 Value = value;
                 Next = next;
             }
 
-            public string Value;
-            public Node Next;
+            public TItem Value;
+            public Node<TItem> Next;
         }
     }
 }

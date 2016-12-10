@@ -2,12 +2,12 @@
 
 namespace Algorithms.Stacks
 {
-    public class ResizingArrayStack : IStack
+    public class ResizingArrayStack<T> : IStack<T>
     {
         private int index;
-        private string[] array = new string[1];
+        private T[] array = new T[1];
 
-        public void Push(string item)
+        public void Push(T item)
         {
             if (index == array.Length)
             {
@@ -17,7 +17,7 @@ namespace Algorithms.Stacks
             array[index++] = item;
         }
 
-        public string Pop()
+        public T Pop()
         {
             if (index == 0)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Algorithms.Common;
 
 namespace Algorithms.Stacks
 {
@@ -10,7 +11,7 @@ namespace Algorithms.Stacks
         {
             if (first == null)
             {
-                first = new Node<T>(item, null);
+                first = new Node<T>(item);
             }
             else
             {
@@ -32,17 +33,5 @@ namespace Algorithms.Stacks
         }
 
         public bool IsEmpty => first == null;
-
-        private class Node<TItem>
-        {
-            public Node(TItem value, Node<TItem> next)
-            {
-                Value = value;
-                Next = next;
-            }
-
-            public TItem Value;
-            public Node<TItem> Next;
-        }
     }
 }

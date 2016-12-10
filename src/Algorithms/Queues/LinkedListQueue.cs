@@ -1,4 +1,5 @@
 ﻿using System;
+using Algorithms.Common;
 
 namespace Algorithms.Queues
 {
@@ -10,12 +11,12 @@ namespace Algorithms.Queues
         {
             if (IsEmpty)
             {
-                first = new Node<T>(value, null);
+                first = new Node<T>(value);
                 last = first;
             }
             else
             {
-                last.Next = new Node<T>(value, null);
+                last.Next = new Node<T>(value);
                 last = last.Next;
             }
         }
@@ -38,18 +39,6 @@ namespace Algorithms.Queues
         }
 
         public bool IsEmpty => first == null;
-
-        private class Node<TItem>
-        {
-            public Node(TItem value, Node<TItem> next)
-            {
-                Value = value;
-                Next = next;
-            }
-
-            public TItem Value;
-            public Node<TItem> Next;
-        }
 
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Algorithms.Queues
 {
-    public interface IQueue
+    public interface IQueue<T>
     {
-        void Enqueue(string value);
-        string Dequeue();
+        void Enqueue(T value);
+        T Dequeue();
         bool IsEmpty { get; }
     }
 }

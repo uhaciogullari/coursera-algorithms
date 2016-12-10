@@ -7,7 +7,7 @@ namespace Algorithms.Queues
 {
     public abstract class QueueTests
     {
-        protected abstract IQueue CreateQueue();
+        protected abstract IQueue<string> CreateQueue();
 
         [Fact]
         public void QueueTest()
@@ -33,9 +33,9 @@ namespace Algorithms.Queues
 
     public class LinkedListQueueTests: QueueTests
     {
-        protected override IQueue CreateQueue()
+        protected override IQueue<string> CreateQueue()
         {
-            return new LinkedListQueue();
+            return new LinkedListQueue<string>();
         }
     }
 }

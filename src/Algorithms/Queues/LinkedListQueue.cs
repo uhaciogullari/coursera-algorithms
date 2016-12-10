@@ -2,25 +2,25 @@
 
 namespace Algorithms.Queues
 {
-    public class LinkedListQueue : IQueue
+    public class LinkedListQueue<T> : IQueue<T>
     {
-        private Node first, last;
+        private Node<T> first, last;
 
-        public void Enqueue(string value)
+        public void Enqueue(T value)
         {
             if (IsEmpty)
             {
-                first = new Node(value, null);
+                first = new Node<T>(value, null);
                 last = first;
             }
             else
             {
-                last.Next = new Node(value, null);
+                last.Next = new Node<T>(value, null);
                 last = last.Next;
             }
         }
 
-        public string Dequeue()
+        public T Dequeue()
         {
             if (first == null)
             {
@@ -39,16 +39,16 @@ namespace Algorithms.Queues
 
         public bool IsEmpty => first == null;
 
-        private class Node
+        private class Node<TItem>
         {
-            public Node(string value, Node next)
+            public Node(TItem value, Node<TItem> next)
             {
                 Value = value;
                 Next = next;
             }
 
-            public string Value;
-            public Node Next;
+            public TItem Value;
+            public Node<TItem> Next;
         }
 
     }

@@ -7,16 +7,25 @@ namespace Algorithms.Queues
 {
     public abstract class QueueTests
     {
+        private readonly IQueue<string> queue;
         protected abstract IQueue<string> CreateQueue();
+
+        protected QueueTests()
+        {
+            queue = CreateQueue();
+        }
+
+        [Fact]
+        public void DequeueFromEmptyQueue()
+        {
+            Action act = () => queue.Dequeue();
+            act.ShouldThrow<InvalidOperationException>();
+        }
 
         [Fact]
         public void QueueTest()
         {
-            var queue = CreateQueue();
             List<string> output = new List<string>();
-
-            Action act = () => queue.Dequeue();
-            act.ShouldThrow<InvalidOperationException>();
 
             queue.Enqueue("to");
             queue.Enqueue("be");

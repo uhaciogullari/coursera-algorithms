@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using FluentAssertions;
 using Xunit;
 
@@ -8,16 +7,25 @@ namespace Algorithms.Stacks
 {
     public abstract class StackTests
     {
+        private IStack<string> stack;
         protected abstract IStack<string> CreateStack();
 
-        [Fact]
-        public void StackTest()
+        protected StackTests()
         {
-            var stack = CreateStack();
-            List<string> output = new List<string>();
+            stack = CreateStack();
+        }
 
+        [Fact]
+        public void PopFromEmptyStack()
+        {
             Action act = () => stack.Pop();
             act.ShouldThrow<InvalidOperationException>();
+        }
+
+        [Fact]
+        public void PushPop()
+        {
+            List<string> output = new List<string>();
 
             stack.Push("to");
             stack.Push("be");
@@ -35,6 +43,18 @@ namespace Algorithms.Stacks
             stack.Push("is");
 
             output.Should().BeEquivalentTo("to", "be", "not", "that", "or", "be");
+        }
+
+        [Fact]
+        public void Enumerate()
+        {
+            stack.Push("to");
+            stack.Push("be");
+            stack.Push("or");
+            stack.Push("not");
+            stack.Push("to");
+
+            stack.Should().BeEquivalentTo("to", "not", "or", "be", "to");
         }
     }
 

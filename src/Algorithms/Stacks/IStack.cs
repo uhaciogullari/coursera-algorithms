@@ -1,6 +1,8 @@
-﻿namespace Algorithms.Stacks
+﻿using System.Collections.Generic;
+
+namespace Algorithms.Stacks
 {
-    public interface IStack<T>
+    public interface IStack<T> : IEnumerable<T>
     {
         void Push(T item);
 
